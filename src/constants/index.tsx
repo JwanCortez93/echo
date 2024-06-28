@@ -14,6 +14,11 @@ export const sidebarLinks: SidebarLinkType[] = [
     label: "Home",
   },
   {
+    icon: <Speech />,
+    route: "/create-echo",
+    label: "Create Echo",
+  },
+  {
     icon: <Search />,
     route: "/search",
     label: "Search",
@@ -22,11 +27,6 @@ export const sidebarLinks: SidebarLinkType[] = [
     icon: <Heart />,
     route: "/activity",
     label: "Activity",
-  },
-  {
-    icon: <Speech />,
-    route: "/create-echo",
-    label: "Create Echo",
   },
   {
     icon: <UsersRound />,

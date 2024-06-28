@@ -23,15 +23,6 @@ const NavBar = () => {
         />
       </Link>
       <div className="flex items-center gap-1">
-        <div className="block md:hidden">
-          <SignedIn>
-            <SignOutButton>
-              <div className="flex cursor-pointer">
-                <LogOut className="text-secondary" />
-              </div>
-            </SignOutButton>
-          </SignedIn>
-        </div>
         <OrganizationSwitcher
           appearance={{
             elements: {
@@ -39,6 +30,15 @@ const NavBar = () => {
             },
           }}
         />
+        <div className="block md:hidden">
+          <SignedIn>
+            <SignOutButton>
+              <div className="flex cursor-pointer">
+                <LogOut className="text-destructive" />
+              </div>
+            </SignOutButton>
+          </SignedIn>
+        </div>
       </div>
     </nav>
   );

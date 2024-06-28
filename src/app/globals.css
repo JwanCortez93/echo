@@ -124,7 +124,7 @@
     @apply border-none bg-foreground text-base-regular text-secondary-foreground outline-none !important;
   }
 
-  .topbar {
+  .navbar {
     @apply fixed top-0 z-30 flex w-full items-center justify-between bg-foreground px-6 py-3;
   }
 

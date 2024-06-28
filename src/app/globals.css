@@ -145,7 +145,7 @@
   }
 
   .leftsidebar_link {
-    @apply relative flex flex-col justify-start text-secondary gap-1 rounded-lg p-4;
+    @apply relative flex  justify-start text-secondary gap-1 rounded-lg p-4;
   }
 
   .pagination {

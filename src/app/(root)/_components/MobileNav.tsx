@@ -16,7 +16,7 @@ const MobileNav = () => {
           return (
             <Link
               key={link.label}
-              className={cn("leftsidebar_link items-center", {
+              className={cn("leftsidebar_link flex-col items-center", {
                 "bg-primary text-accent-foreground": isActive,
               })}
               href={link.route}

@@ -208,6 +208,7 @@ const config = {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
+        glassmorphism: "rgba(16, 16, 18, 0.60)",
       },
       borderRadius: {
         lg: "var(--radius)",

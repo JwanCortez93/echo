@@ -128,15 +128,15 @@
     @apply fixed top-0 z-30 flex w-full items-center justify-between bg-foreground px-6 py-3;
   }
 
-  .bottombar {
-    @apply fixed bottom-0 z-10 w-full rounded-t-3xl bg-glassmorphism p-4 backdrop-blur-lg xs:px-7 md:hidden;
+  .mobileNav {
+    @apply fixed bottom-0 z-10 w-full rounded-t-3xl bg-foreground p-4 backdrop-blur-lg sm:px-7 md:hidden;
   }
 
-  .bottombar_container {
-    @apply flex items-center justify-between gap-3 xs:gap-5;
+  .mobileNav_container {
+    @apply flex items-center justify-between gap-3 sm:gap-5;
   }
 
-  .bottombar_link {
+  .mobileNav_link {
     @apply relative flex flex-col items-center gap-2 rounded-lg p-2 sm:flex-1 sm:px-2 sm:py-2.5;
   }
 
@@ -145,7 +145,7 @@
   }
 
   .leftsidebar_link {
-    @apply relative flex justify-start gap-4 rounded-lg p-4;
+    @apply relative flex flex-col justify-start text-secondary gap-1 rounded-lg p-4;
   }
 
   .pagination {

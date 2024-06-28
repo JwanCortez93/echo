@@ -1,4 +1,5 @@
 import { OrganizationSwitcher, SignedIn, SignOutButton } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 import { LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,6 +26,7 @@ const NavBar = () => {
       <div className="flex items-center gap-1">
         <OrganizationSwitcher
           appearance={{
+            baseTheme: dark,
             elements: {
               organizationSwitcherTrigger: "py-2 px-4",
             },

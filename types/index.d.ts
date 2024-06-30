@@ -25,7 +25,7 @@ declare type TextFormFieldProps = {
   name: string;
   label: string;
   placeholder: string;
-  isBio: boolean;
+  isTextarea: boolean;
 };
 
 declare type UpdateUserParams = {
@@ -34,5 +34,12 @@ declare type UpdateUserParams = {
   name: string;
   bio: string;
   image: string;
+  path: string;
+};
+
+declare type CreateEchoParams = {
+  text: string;
+  author: string;
+  communityId: string | null;
   path: string;
 };

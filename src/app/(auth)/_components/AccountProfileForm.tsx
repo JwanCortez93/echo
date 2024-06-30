@@ -15,13 +15,14 @@ import { z } from "zod";
 import Image from "next/image";
 import { User } from "lucide-react";
 import { ChangeEvent, useState } from "react";
-import { AccountProfileFormProps, TextFormFieldProps } from "../../../../types";
-import { Textarea } from "@/components/ui/textarea";
+import { AccountProfileFormProps } from "../../../../types";
+
 import { Button } from "@/components/ui/button";
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
 import { updateUser } from "../_actions/users";
 import { usePathname, useRouter } from "next/navigation";
+import TextFormField from "@/components/TextFormField";
 
 const AccountProfileForm = ({ user, buttonTitle }: AccountProfileFormProps) => {
   const pathname = usePathname();
@@ -131,66 +132,27 @@ const AccountProfileForm = ({ user, buttonTitle }: AccountProfileFormProps) => {
           control={form.control}
           label="Name"
           placeholder="ex: John Doe"
-          isBio={false}
+          isTextarea={false}
         />
         <TextFormField
           name="username"
           control={form.control}
           label="Username"
           placeholder="ex: JohnDoe23"
-          isBio={false}
+          isTextarea={false}
         />
         <TextFormField
           name="bio"
           control={form.control}
           label="Bio"
           placeholder="Tell us something about yourself"
-          isBio
+          isTextarea
         />
         <Button type="submit" className="bg-primary">
           Submit
         </Button>
       </form>
     </Form>
-  );
-};
-
-const TextFormField = ({
-  name,
-  control,
-  label,
-  placeholder,
-  isBio,
-}: TextFormFieldProps) => {
-  return (
-    <FormField
-      control={control}
-      name={name}
-      render={({ field }) => (
-        <FormItem className="flex flex-col gap-3 w-full">
-          <FormLabel className="text-base-semibold text-secondary">
-            {label}
-          </FormLabel>
-          <FormControl>
-            {isBio ? (
-              <Textarea
-                rows={10}
-                placeholder={placeholder}
-                className="account-form_input no-focus"
-                {...field}
-              ></Textarea>
-            ) : (
-              <Input
-                placeholder={placeholder}
-                type="text"
-                className="account-form_input no-focus"
-                {...field}
-              />
-            )}
-          </FormControl>
-        </FormItem>
-      )}
-    />
   );
 };
 

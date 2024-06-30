@@ -1,7 +1,7 @@
 "use server";
 
 import { connectToDB } from "@/lib/mongoose";
-import { CreateEchoParams } from "../../../../types";
+import { CreateEchoParams } from "../../../../types/index.d";
 import Echo from "@/lib/models/echo.model";
 import User from "@/lib/models/user.model";
 import { revalidatePath } from "next/cache";
@@ -56,4 +56,36 @@ export const fetchEchoes = async (pageNumber = 1, pageSize = 20) => {
   const isNext = totalEchoesCount > skipEchoes + echoes.length;
 
   return { echoes, isNext };
+};
+
+export const fetchEchoById = async (id: string) => {
+  connectToDB();
+
+  try {
+    const echo = await Echo.findById({ _id: id })
+      .populate({
+        path: "author",
+        model: User,
+        select: "_id id name image",
+      })
+      .populate({
+        path: "children",
+        populate: [
+          { path: "author", model: User, select: "_id name parentId image" },
+          {
+            path: "children",
+            model: Echo,
+            populate: {
+              path: "author",
+              model: User,
+              select: "_id id name parentId image",
+            },
+          },
+        ],
+      })
+      .exec();
+    return echo;
+  } catch (error: any) {
+    throw new Error("Failed to find echo: ", error.message);
+  }
 };

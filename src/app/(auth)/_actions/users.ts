@@ -3,7 +3,7 @@
 import User from "@/lib/models/user.model";
 import { connectToDB } from "@/lib/mongoose";
 import { revalidatePath } from "next/cache";
-import { UpdateUserParams } from "../../../../types";
+import { UpdateUserParams } from "../../../../types/index.d";
 
 export const updateUser = async ({
   userId,

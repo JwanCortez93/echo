@@ -1,4 +1,4 @@
-import { TextFormFieldProps } from "../../types";
+import { TextFormFieldProps } from "../../types/index.d";
 import { FormControl, FormField, FormItem, FormLabel } from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -13,7 +13,7 @@ const TextFormField = ({
   return (
     <FormField
       control={control}
-      name={name}
+      name={name as any}
       render={({ field }) => (
         <FormItem className="flex flex-col gap-3 w-full">
           <FormLabel className="text-base-semibold text-secondary">

@@ -1,4 +1,7 @@
 import { UserValidation } from "@/lib/validations/user";
+import { ReactElement } from "react";
+import { Control } from "react-hook-form";
+import { z } from "zod";
 
 declare type SidebarLinkType = {
   icon: ForwardRefExoticComponent<
@@ -23,7 +26,7 @@ declare type AccountProfileFormProps = {
 declare type TextFormFieldProps = {
   control: Control<z.infer<typeof UserValidation>>;
   name: string;
-  label: string;
+  label: string | ReactElement;
   placeholder: string;
   isTextarea: boolean;
 };
@@ -62,4 +65,10 @@ declare type EchoCardProps = {
   createdAt: string;
   comments: { author: { image: string } }[];
   isComment?: boolean;
+};
+
+declare type CommentProps = {
+  echoId: string;
+  currentUserImg: string;
+  currentUserId: string;
 };

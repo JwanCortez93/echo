@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { EchoCardProps } from "../../../../types";
+import { EchoCardProps } from "../../../../types/index.d";
 import Image from "next/image";
 import {
   CircleArrowOutUpRight,
@@ -44,7 +44,7 @@ const EchoCard = ({
             </Link>
             <p className="mt-2 text-small-regular text-secondary">{content}</p>
             <div className="mt-5 flex flex-col gap-3">
-              <div className="flex gap-3.5">
+              <div className="flex gap-5">
                 <Heart className="text-muted-foreground cursor-pointer hover:text-secondary" />
                 <Link href={`/echo/${id}`}>
                   <MessageCircle className="text-muted-foreground cursor-pointer hover:text-secondary" />

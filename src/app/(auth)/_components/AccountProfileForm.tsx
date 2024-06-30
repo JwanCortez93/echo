@@ -15,7 +15,7 @@ import { z } from "zod";
 import Image from "next/image";
 import { User } from "lucide-react";
 import { ChangeEvent, useState } from "react";
-import { AccountProfileFormProps } from "../../../../types";
+import { AccountProfileFormProps } from "../../../../types/index.d";
 
 import { Button } from "@/components/ui/button";
 import { isBase64Image } from "@/lib/utils";

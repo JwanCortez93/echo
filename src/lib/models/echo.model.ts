@@ -9,7 +9,7 @@ const echoSchema = new mongoose.Schema({
   },
   createdAt: { type: Date, default: Date.now },
   parentId: { type: String },
-  chidlren: [{ type: mongoose.Schema.Types.ObjectId, ref: "Echo" }],
+  children: [{ type: mongoose.Schema.Types.ObjectId, ref: "Echo" }],
 });
 
 const Echo = mongoose.models.Echo || mongoose.model("Echo", echoSchema);

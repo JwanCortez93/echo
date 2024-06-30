@@ -26,3 +26,34 @@ export const createEcho = async ({
     throw new Error("Error creating thread: ", error.message);
   }
 };
+
+export const fetchEchoes = async (pageNumber = 1, pageSize = 20) => {
+  connectToDB();
+
+  const skipEchoes = (pageNumber - 1) * pageSize;
+  const echoesQuery = Echo.find({ parentId: { $in: [null, undefined] } })
+    .sort({
+      createdAt: "desc",
+    })
+    .skip(skipEchoes)
+    .limit(pageSize)
+    .populate({ path: "author", model: User })
+    .populate({
+      path: "children",
+      populate: {
+        path: "author",
+        model: User,
+        select: "_id name parentId image",
+      },
+    });
+
+  const totalEchoesCount = await Echo.countDocuments({
+    parentId: { $in: [null, undefined] },
+  });
+
+  const echoes = await echoesQuery.exec();
+
+  const isNext = totalEchoesCount > skipEchoes + echoes.length;
+
+  return { echoes, isNext };
+};

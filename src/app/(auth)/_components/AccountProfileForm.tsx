@@ -20,8 +20,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
+import { updateUser } from "../_actions/users";
+import { usePathname, useRouter } from "next/navigation";
 
 const AccountProfileForm = ({ user, buttonTitle }: AccountProfileFormProps) => {
+  const pathname = usePathname();
+  const router = useRouter();
   const [files, setFiles] = useState<File[]>([]);
   const { startUpload } = useUploadThing("media");
   const form = useForm({
@@ -70,6 +74,19 @@ const AccountProfileForm = ({ user, buttonTitle }: AccountProfileFormProps) => {
         values.profile_photo = imgRes[0].fileUrl;
       }
     }
+
+    await updateUser({
+      userId: user.id,
+      username: values.username,
+      name: values.name,
+      bio: values.bio,
+      image: values.profile_photo,
+      path: pathname,
+    });
+
+    if (pathname === "/profile/edit") {
+      router.back();
+    } else router.push("/");
   };
 
   return (

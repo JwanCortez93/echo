@@ -27,3 +27,12 @@ declare type TextFormFieldProps = {
   placeholder: string;
   isBio: boolean;
 };
+
+declare type UpdateUserParams = {
+  userId: string;
+  username: string;
+  name: string;
+  bio: string;
+  image: string;
+  path: string;
+};

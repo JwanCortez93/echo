@@ -6,6 +6,7 @@ import {
   UserSquare,
   UsersRound,
 } from "lucide-react";
+import { SidebarLinkType } from "../../types";
 
 export const sidebarLinks: SidebarLinkType[] = [
   {

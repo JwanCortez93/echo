@@ -155,6 +155,25 @@
   .rightsidebar {
     @apply sticky right-0 top-0 z-20 flex h-screen w-fit flex-col justify-between gap-12 overflow-auto border-l border-l-background bg-foreground px-10 pb-6 pt-28 max-xl:hidden;
   }
+  .account-form_image-label {
+    @apply flex h-24 w-24 items-center justify-center rounded-full bg-foreground !important;
+  }
+
+  .account-form_image-input {
+    @apply cursor-pointer border-none bg-transparent outline-none file:text-accent !important;
+  }
+
+  .account-form_input {
+    @apply border border-foreground bg-foreground text-secondary !important;
+  }
+
+  .comment-form {
+    @apply mt-10 flex items-center gap-4 border-y border-y-foreground py-5 max-xs:flex-col !important;
+  }
+
+  .comment-form_btn {
+    @apply rounded-3xl bg-primary-500 px-8 py-2 !text-small-regular text-secondary max-xs:w-full !important;
+  }
 }
 
 @layer utilities {

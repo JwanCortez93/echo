@@ -112,3 +112,27 @@ export const fetchUserEchoes = async (userId: string) => {
     throw new Error("Failed to fetch user echoes: ", error.message);
   }
 };
+
+export const getActivity = async (userId: string) => {
+  try {
+    connectToDB();
+    const userEchoes = await Echo.find({ author: userId });
+
+    const childEchoesIds = userEchoes.reduce((acc, userEcho) => {
+      return acc.concat(userEcho.children);
+    }, []);
+
+    const replies = await Echo.find({
+      _id: { $in: childEchoesIds },
+      author: { $ne: userId },
+    }).populate({
+      path: "author",
+      model: User,
+      select: "name image _id",
+    });
+
+    return replies;
+  } catch (error: any) {
+    throw new Error("Failed to get activity: ", error.message);
+  }
+};

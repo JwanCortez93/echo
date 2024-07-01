@@ -99,7 +99,14 @@ declare type EchoTabProps = {
 
 declare type FetchUsersParams = {
   userId: string;
-  searchString: string;
+  searchString?: string;
+  pageNumber?: number;
+  pageSize?: number;
+  sortBy?: SortOrder;
+};
+
+declare type FetchCommunitiesParams = {
+  searchString?: string;
   pageNumber?: number;
   pageSize?: number;
   sortBy?: SortOrder;
@@ -111,4 +118,20 @@ declare type UserCardProps = {
   username: string;
   imgUrl: string;
   userType: string;
+};
+
+declare type CreateCommunityParams = {
+  id: string;
+  name: string;
+  username: string;
+  image: string;
+  bio: string;
+  createdById: string;
+};
+
+declare type UpdateCommunityInfoParams = {
+  communityId: string;
+  name: string;
+  username: string;
+  image: string;
 };

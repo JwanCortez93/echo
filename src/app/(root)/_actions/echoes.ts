@@ -23,7 +23,7 @@ export const createEcho = async ({
 
     revalidatePath(path);
   } catch (error: any) {
-    throw new Error("Error creating thread: ", error.message);
+    throw new Error("Error creating echo: ", error.message);
   }
 };
 

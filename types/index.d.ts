@@ -1,4 +1,5 @@
 import { UserValidation } from "@/lib/validations/user";
+import { SortOrder } from "mongoose";
 import { ReactElement } from "react";
 import { Control } from "react-hook-form";
 import { z } from "zod";
@@ -94,4 +95,20 @@ declare type EchoTabProps = {
   currentUserId: string;
   accountId: string;
   accountType: string;
+};
+
+declare type FetchUsersParams = {
+  userId: string;
+  searchString: string;
+  pageNumber?: number;
+  pageSize?: number;
+  sortBy?: SortOrder;
+};
+
+declare type UserCardProps = {
+  id: string;
+  name: string;
+  username: string;
+  imgUrl: string;
+  userType: string;
 };

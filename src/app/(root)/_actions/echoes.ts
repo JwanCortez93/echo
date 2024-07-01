@@ -89,3 +89,38 @@ export const fetchEchoById = async (id: string) => {
     throw new Error("Failed to find echo: ", error.message);
   }
 };
+
+export const addCommentToEcho = async ({
+  echoId,
+  commentText,
+  userId,
+  path,
+}: {
+  echoId: string;
+  commentText: string;
+  userId: string;
+  path: string;
+}) => {
+  connectToDB();
+  try {
+    const originalEcho = await Echo.findById(echoId);
+
+    if (!originalEcho) throw new Error("Echo not found");
+
+    const commentEcho = new Echo({
+      text: commentText,
+      author: userId,
+      parentId: echoId,
+    });
+
+    const savedCommentEcho = await commentEcho.save();
+
+    originalEcho.children.push(savedCommentEcho._id);
+
+    await originalEcho.save();
+
+    revalidatePath(path);
+  } catch (error: any) {
+    throw new Error("Failed to add comment to echo: ", error.message);
+  }
+};

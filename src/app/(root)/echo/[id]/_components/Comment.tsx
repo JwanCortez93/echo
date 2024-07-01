@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import TextFormField from "@/components/TextFormField";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
+import { addCommentToEcho } from "@/app/(root)/_actions/echoes";
 
 const Comment = ({ echoId, currentUserImg, currentUserId }: CommentProps) => {
   const pathname = usePathname();
@@ -31,7 +32,14 @@ const Comment = ({ echoId, currentUserImg, currentUserId }: CommentProps) => {
   });
 
   const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
-    // router.push("/");
+    await addCommentToEcho({
+      echoId,
+      commentText: values.echo,
+      userId: JSON.parse(currentUserId),
+      path: pathname,
+    });
+
+    form.reset();
   };
   return (
     <Form {...form}>

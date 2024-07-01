@@ -9,6 +9,7 @@ import {
   Send,
   Share,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const EchoCard = ({
   id,
@@ -22,7 +23,12 @@ const EchoCard = ({
   isComment,
 }: EchoCardProps) => {
   return (
-    <article className="flex w-full flex-col rounded-xl bg-foreground p-7">
+    <article
+      className={cn("flex w-full flex-col rounded-xl", {
+        "px-0 sm:px-7": isComment,
+        "bg-foreground p-7": !isComment,
+      })}
+    >
       <div className="flex items-start justify-between">
         <div className="flex w-full flex-1 gap-4">
           <div className="flex flex-col items-center">

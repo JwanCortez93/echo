@@ -72,3 +72,26 @@ declare type CommentProps = {
   currentUserImg: string;
   currentUserId: string;
 };
+
+declare type ProfileHeaderProps = {
+  accountId: string;
+  authUserId: string;
+  name: string;
+  username: string;
+  imgUrl: string;
+  bio: string;
+};
+
+declare type Tab = {
+  value: string;
+  label: string;
+  icon: ForwardRefExoticComponent<
+    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+  >;
+};
+
+declare type EchoTabProps = {
+  currentUserId: string;
+  accountId: string;
+  accountType: string;
+};

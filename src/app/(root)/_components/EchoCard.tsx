@@ -49,7 +49,9 @@ const EchoCard = ({
               </h4>
             </Link>
             <p className="mt-2 text-small-regular text-secondary">{content}</p>
-            <div className="mt-5 flex flex-col gap-3">
+            <div
+              className={cn("mt-5 flex flex-col gap-3", { "mb-10": isComment })}
+            >
               <div className="flex gap-5">
                 <Heart className="text-muted-foreground cursor-pointer hover:text-secondary" />
                 <Link href={`/echo/${id}`}>

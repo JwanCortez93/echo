@@ -200,3 +200,11 @@
     background: #7878a3;
   }
 }
+
+.tab {
+  @apply flex min-h-[50px] flex-1  items-center gap-3 bg-foreground text-secondary data-[state=active]:bg-[#0e0e12] data-[state=active]:text-secondary !important;
+}
+
+.no-focus {
+  @apply focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
+}

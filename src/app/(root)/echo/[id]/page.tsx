@@ -40,7 +40,7 @@ const EchoPage = async ({ params }: { params: { id: string } }) => {
           currentUserId={JSON.stringify(userInfo._id)}
         />
       </div>
-      <div className="mt-10 flex-col flex gap-10">
+      <div className="mt-10 flex-col flex">
         {children.map((comment: any) => (
           <EchoCard
             key={comment._id}

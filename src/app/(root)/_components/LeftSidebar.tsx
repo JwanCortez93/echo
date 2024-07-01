@@ -2,13 +2,14 @@
 
 import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
-import { SignedIn, SignOutButton } from "@clerk/nextjs";
+import { SignedIn, SignOutButton, useAuth } from "@clerk/nextjs";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const LeftSidebar = () => {
   const pathname = usePathname();
+  const { userId } = useAuth();
 
   return (
     <section className="custom-scrollbar leftsidebar items-center">
@@ -16,6 +17,8 @@ const LeftSidebar = () => {
         {sidebarLinks.map((link) => {
           const isActive =
             pathname === link.route || pathname.startsWith(`${link.route}/`);
+
+          if (link.route === "/profile") link.route = `${link.route}/${userId}`;
           return (
             <Link
               key={link.label}

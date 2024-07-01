@@ -1,12 +1,16 @@
 import {
   Heart,
   Home,
+  MessageCircle,
+  MessageCircleQuestion,
   Search,
   Speech,
+  Tags,
+  Users,
   UserSquare,
   UsersRound,
 } from "lucide-react";
-import { SidebarLinkType } from "../../types/index.d";
+import { SidebarLinkType, Tab } from "../../types/index.d";
 
 export const sidebarLinks: SidebarLinkType[] = [
   {
@@ -39,4 +43,15 @@ export const sidebarLinks: SidebarLinkType[] = [
     route: "/profile",
     label: "Profile",
   },
+];
+
+export const profileTabs: Tab[] = [
+  { value: "echoes", label: "Echoes", icon: <Speech /> },
+  { value: "replies", label: "Replies", icon: <MessageCircle /> },
+  { value: "tagged", label: "Tagged", icon: <Tags /> },
+];
+export const communityTabs: Tab[] = [
+  { value: "echoes", label: "Echoes", icon: <Speech /> },
+  { value: "members", label: "Members", icon: <Users /> },
+  { value: "requests", label: "Requests", icon: <MessageCircleQuestion /> },
 ];

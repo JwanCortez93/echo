@@ -2,14 +2,20 @@ import { fetchUserEchoes } from "@/app/(auth)/_actions/users";
 import { EchoTabProps } from "../../../../../../types";
 import { redirect } from "next/navigation";
 import EchoCard from "@/app/(root)/_components/EchoCard";
+import { fetchCommunityEchoes } from "@/app/(root)/_actions/communities";
 
 const EchoTab = async ({
   currentUserId,
   accountId,
   accountType,
 }: EchoTabProps) => {
-  const result = await fetchUserEchoes(accountId);
+  let result: any;
 
+  if (accountType === "Community")
+    result = await fetchCommunityEchoes(accountId);
+  else result = await fetchUserEchoes(accountId);
+
+  
   if (!result) redirect("/");
   return (
     <section className="mt-9 flex flex-col gap-10">

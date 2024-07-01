@@ -5,6 +5,7 @@ import { CreateEchoParams } from "../../../../types/index.d";
 import Echo from "@/lib/models/echo.model";
 import User from "@/lib/models/user.model";
 import { revalidatePath } from "next/cache";
+import Community from "@/lib/models/community.model";
 
 export const createEcho = async ({
   text,
@@ -15,11 +16,22 @@ export const createEcho = async ({
   try {
     connectToDB();
 
-    const createdEcho = await Echo.create({ text, author, communityId });
+    const community = await Community.findOne({ id: communityId }, { _id: 1 });
+
+    const createdEcho = await Echo.create({
+      text,
+      author,
+      community,
+    });
 
     await User.findByIdAndUpdate(author, {
       $push: { echoes: createdEcho._id },
     });
+
+    if (community)
+      await Community.findByIdAndUpdate(community, {
+        $push: { echoes: createdEcho._id },
+      });
 
     revalidatePath(path);
   } catch (error: any) {
@@ -38,6 +50,11 @@ export const fetchEchoes = async (pageNumber = 1, pageSize = 20) => {
     .skip(skipEchoes)
     .limit(pageSize)
     .populate({ path: "author", model: User })
+    .populate({
+      path: "community",
+      model: Community,
+      select: "_id id name image",
+    })
     .populate({
       path: "children",
       populate: {
@@ -69,6 +86,11 @@ export const fetchEchoById = async (id: string) => {
         select: "_id id name image",
       })
       .populate({
+        path: "community",
+        model: Community,
+        select: "_id id name image",
+      })
+      .populate({
         path: "children",
         populate: [
           { path: "author", model: User, select: "_id name parentId image" },
@@ -84,6 +106,7 @@ export const fetchEchoById = async (id: string) => {
         ],
       })
       .exec();
+
     return echo;
   } catch (error: any) {
     throw new Error("Failed to find echo: ", error.message);

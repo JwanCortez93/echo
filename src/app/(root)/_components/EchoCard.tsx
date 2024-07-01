@@ -9,7 +9,7 @@ import {
   Send,
   Share,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, formatDateString } from "@/lib/utils";
 
 const EchoCard = ({
   id,
@@ -71,6 +71,23 @@ const EchoCard = ({
           </div>
         </div>
       </div>
+      {!isComment && community && (
+        <Link
+          href={`/communities/${community.id}`}
+          className="mt-5 flex items-center"
+        >
+          <p className="text-subtle-medium text-muted">
+            {formatDateString(createdAt)}- {community.name} Community
+          </p>
+          <Image
+            src={community.image}
+            alt={community.name}
+            width={14}
+            height={14}
+            className="rounded-full ml-1 object-cover"
+          />
+        </Link>
+      )}
     </article>
   );
 };

@@ -44,8 +44,7 @@ const ProfilePage = async ({ params }: { params: { id: string } }) => {
             <TabsContent
               key={`content-${tab.label}`}
               value={tab.value}
-              className="wfull
-             text-secondary"
+              className="w-full text-secondary"
             >
               <EchoTab
                 currentUserId={user.id}

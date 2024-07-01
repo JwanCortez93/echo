@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { FetchUsersParams, UpdateUserParams } from "../../../../types/index.d";
 import Echo from "@/lib/models/echo.model";
 import { FilterQuery } from "mongoose";
+import Community from "@/lib/models/community.model";
 
 export const updateUser = async ({
   userId,
@@ -37,11 +38,10 @@ export const updateUser = async ({
 export const fetchUser = async (userId: string) => {
   try {
     connectToDB();
-    return await User.findOne({ id: userId });
-    // .populate({
-    //   path: "communities",
-    //   model: Community,
-    // });
+    return await User.findOne({ id: userId }).populate({
+      path: "communities",
+      model: Community,
+    });
   } catch (error: any) {
     throw new Error("Failed to fetch user: ", error.message);
   }
@@ -96,15 +96,18 @@ export const fetchUserEchoes = async (userId: string) => {
     const echoes = await User.findOne({ id: userId }).populate({
       path: "echoes",
       model: Echo,
-      populate: {
-        path: "children",
-        model: Echo,
-        populate: {
-          path: "author",
-          model: User,
-          select: "name image id",
+      populate: [
+        { path: "community", model: Community, select: "name id image _id" },
+        {
+          path: "children",
+          model: Echo,
+          populate: {
+            path: "author",
+            model: User,
+            select: "name image id",
+          },
         },
-      },
+      ],
     });
 
     return echoes;

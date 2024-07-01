@@ -19,6 +19,8 @@ const EchoPage = async ({ params }: { params: { id: string } }) => {
   const { _id, id, parentId, text, author, community, createdAt, children } =
     await fetchEchoById(params.id);
 
+  
+
   return (
     <section className="relative">
       <div>

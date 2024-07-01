@@ -10,10 +10,12 @@ import { usePathname, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { createEcho } from "../../_actions/echoes";
 import { z } from "zod";
+import { useOrganization } from "@clerk/nextjs";
 
 const PostEcho = ({ userId }: { userId: string }) => {
   const pathname = usePathname();
   const router = useRouter();
+  const { organization } = useOrganization();
 
   const form = useForm({
     resolver: zodResolver(EchoValidation),
@@ -23,11 +25,13 @@ const PostEcho = ({ userId }: { userId: string }) => {
     },
   });
 
+  
+
   const onSubmit = async (values: z.infer<typeof EchoValidation>) => {
     await createEcho({
       text: values.echo,
       author: userId,
-      communityId: null,
+      communityId: organization ? organization.id : null,
       path: pathname,
     });
 

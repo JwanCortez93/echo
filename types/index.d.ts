@@ -25,7 +25,7 @@ declare type AccountProfileFormProps = {
 };
 
 declare type TextFormFieldProps = {
-  control: Control<z.infer<typeof UserValidation>>;
+  control: Control<z.infer<typeof UserValidation | typeof EchoValidation>>;
   name: string;
   label: string | ReactElement;
   placeholder: string;
@@ -81,6 +81,7 @@ declare type ProfileHeaderProps = {
   username: string;
   imgUrl: string;
   bio: string;
+  type?: "User" | "Community";
 };
 
 declare type Tab = {
@@ -134,4 +135,13 @@ declare type UpdateCommunityInfoParams = {
   name: string;
   username: string;
   image: string;
+};
+
+declare type CommunityCardProps = {
+  id: string;
+  name: string;
+  username: string;
+  imgUrl: string;
+  bio: string;
+  members: { image: string }[];
 };

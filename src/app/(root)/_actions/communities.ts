@@ -19,6 +19,7 @@ export const createCommunity = async ({
   bio,
   createdById,
 }: CreateCommunityParams) => {
+  console.log("TEST: ", id, name, username, bio, image, createdById);
   try {
     connectToDB();
 

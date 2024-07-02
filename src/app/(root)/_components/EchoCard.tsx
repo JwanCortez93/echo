@@ -53,12 +53,18 @@ const EchoCard = ({
               className={cn("mt-5 flex flex-col gap-3", { "mb-10": isComment })}
             >
               <div className="flex gap-5">
-                <Heart className="text-muted-foreground cursor-pointer hover:text-secondary" />
-                <Link href={`/echo/${id}`}>
+                <div title="Like">
+                  <Heart className="text-muted-foreground cursor-pointer hover:text-secondary" />
+                </div>
+                <Link title="Comment" href={`/echo/${id}`}>
                   <MessageCircle className="text-muted-foreground cursor-pointer hover:text-secondary" />
                 </Link>
-                <CircleArrowOutUpRight className="text-muted-foreground cursor-pointer hover:text-secondary" />
-                <Send className="text-muted-foreground cursor-pointer hover:text-secondary" />
+                <div title="Echo">
+                  <CircleArrowOutUpRight className="text-muted-foreground cursor-pointer hover:text-secondary" />
+                </div>
+                <div title="Share">
+                  <Send className="text-muted-foreground cursor-pointer hover:text-secondary" />
+                </div>
               </div>
               {isComment && comments.length > 0 && (
                 <Link href={`/echo/${id}`}>

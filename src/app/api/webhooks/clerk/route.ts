@@ -25,7 +25,7 @@ type Event = {
   object: "event";
   type: EventType;
 };
-
+export const maxDuration = 30;
 export const POST = async (request: Request) => {
   const payload = await request.json();
   const header = headers();

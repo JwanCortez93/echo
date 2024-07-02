@@ -4,6 +4,9 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   experimental: {
+    serverActions: {
+      bodySizeLimit: "3mb",
+    },
     serverComponentsExternalPackages: ["mongoose"],
   },
   images: {

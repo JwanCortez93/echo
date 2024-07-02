@@ -67,6 +67,7 @@ const AccountProfileForm = ({ user, buttonTitle }: AccountProfileFormProps) => {
   const onSubmit = async (values: z.infer<typeof UserValidation>) => {
     const blob = values.profile_photo;
     const hasImageChanged = isBase64Image(blob);
+    
 
     if (hasImageChanged) {
       const imgRes = await startUpload(files);

@@ -1,5 +1,11 @@
 import { TextFormFieldProps } from "../../types/index.d";
-import { FormControl, FormField, FormItem, FormLabel } from "./ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
@@ -36,6 +42,7 @@ const TextFormField = ({
               />
             )}
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
